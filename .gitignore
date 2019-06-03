@@ -1,0 +1,12 @@
+build/
+
+# Gradle
+.gradle/
+gradle/
+# IntelliJ IDEA
+.idea/
+openaq-apis.iml
+lib/CopyLibs/
+dist/
+out/
+

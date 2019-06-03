@@ -1,0 +1,60 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.11'
+}
+
+group 'com.telecomdesign'
+version '1.0-SNAPSHOT'
+
+apply plugin: "kotlin"
+apply plugin: "maven"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "com.google.code.gson:gson:2.8.5"
+
+    compile "com.squareup.retrofit2:retrofit:2.5.0"
+    compile "com.squareup.retrofit2:converter-gson:2.5.0"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+
+task javadocJar(type: Jar) {
+    classifier = "javadoc"
+    from javadoc
+}
+
+
+task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
+
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            if (project.version.endsWith('-SNAPSHOT')) {
+                repository(url: "https://nexus.insgroup.fr/repository/insgroup_snapshot") {
+                    authentication(userName: jenkinsUsername, password: jenkinsPassword)
+                }
+            } else {
+                repository(url: "https://nexus.insgroup.fr/repository/insgroup_release") {
+                    authentication(userName: jenkinsUsername, password: jenkinsPassword)
+                }
+            }
+        }
+    }
+}
