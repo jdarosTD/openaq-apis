@@ -3,11 +3,15 @@ package com.telecomdesign.openaq.core
 import com.google.gson.GsonBuilder
 import com.telecomdesign.openaq.api.MeasurementsAPI
 import com.telecomdesign.openaq.model.Measurement
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import java.util.concurrent.Future
+import java.util.concurrent.TimeUnit
+
+
 
 /**
  * Created by Jonathan DA ROS on 03/06/2019.
@@ -26,8 +30,13 @@ class OAQ {
     private var retrofit4Measurements: MeasurementsAPI
 
     init {
+
+        val okHttpClientBuilder = OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
+
         retrofit4Measurements = Retrofit.Builder().baseUrl(OAQ.OAQ_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(okHttpClientBuilder.build())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(MeasurementsAPI::class.java)
     }
