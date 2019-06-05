@@ -18,7 +18,7 @@ plugins {
 }
 
 group 'com.telecomdesign'
-version '1.0-SNAPSHOT'
+version '1.0a'
 
 apply plugin: "java"
 apply plugin: "kotlin"
@@ -37,12 +37,12 @@ test {
 dependencies {
     compile "com.google.code.gson:gson:2.8.5"
 
-    compile "com.squareup.retrofit2:retrofit:2.5.0"
-    compile "com.squareup.retrofit2:converter-gson:2.5.0"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-
-    testImplementation "io.reactivex.rxjava2:rxjava:2.2.9"
-    testImplementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation "com.squareup.retrofit2:retrofit:2.5.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.5.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+    
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
