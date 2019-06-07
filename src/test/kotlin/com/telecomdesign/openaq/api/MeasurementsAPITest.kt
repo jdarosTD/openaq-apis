@@ -49,7 +49,7 @@ class MeasurementsAPITest {
 
     @Test
     fun test2() {
-        val oaq = OAQ()
+        val oaq = OAQ(null)
         val measureFuture = oaq.getMeasurementsByCoord("44.841225", "-0.580036")
 
         val subscriber: TestObserver<List<Measurement>> = TestObserver.create()

@@ -1,7 +1,9 @@
 package com.telecomdesign.openaq.api
 
 import com.telecomdesign.openaq.model.Measurement
+import com.telecomdesign.openaq.model.Result
 import io.reactivex.Observable
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.util.*
@@ -30,5 +32,5 @@ interface MeasurementsAPI {
         @Query("include_fields") includeFields : Array<String>?= null,
         @Query("limit") limit : Int?= null,
         @Query("page") page : Int?= null,
-        @Query("format") format : String?= null) : Observable<com.telecomdesign.openaq.model.Result>
+        @Query("format") format : String?= null) : Call<Result>
 }
