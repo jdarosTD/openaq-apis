@@ -18,7 +18,7 @@ plugins {
 }
 
 group 'com.telecomdesign'
-version '1.0.2a'
+version '1.0.2b'
 
 apply plugin: "java"
 apply plugin: "kotlin"
